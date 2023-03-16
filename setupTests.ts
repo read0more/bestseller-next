@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 
 import 'whatwg-fetch';
 
-import server from './src/msw/server';
+import { server } from './src/msw/server';
 
 beforeAll(() => {
   // Enable the mocking in tests.

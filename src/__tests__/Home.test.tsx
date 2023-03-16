@@ -1,15 +1,14 @@
-import { expect, test } from 'vitest'
-import { render, screen, within } from '@testing-library/react'
-import Home from '../pages'
+import { expect, test } from "vitest";
+import { render, screen, waitFor, within } from "@testing-library/react";
+import Home from "../pages";
+import fakeList from "../msw/fakes/list.json";
 
-test('home', () => {
-  render(<Home />)
-  const main = within(screen.getByRole('main'))
-  expect(
-    main.getByRole('heading', { level: 1, name: /welcome to next\.js!/i })
-  ).toBeDefined()
-
-  const footer = within(screen.getByRole('contentinfo'))
-  const link = within(footer.getByRole('link'))
-  expect(link.getByRole('img', { name: /vercel logo/i })).toBeDefined()
-})
+test("home", async () => {
+  render(<Home />);
+  
+  await waitFor(() => {
+    const list = screen.getByRole("list");
+    const listItems = within(list).getAllByRole("listitem");
+    expect(listItems).toHaveLength(fakeList.results.length);
+  });
+});
