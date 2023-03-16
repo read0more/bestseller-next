@@ -28,7 +28,7 @@ const Home: NextPage = () => {
   return <ul>
     {lists.map((list) => (
       <li key={list.list_name}>
-        <a href={`/lists/${list.list_name_encoded}`}>{list.display_name}</a>
+        <a href={`/list/${list.list_name_encoded}`}>{list.display_name}</a>
       </li>
     ))}
   </ul>;
